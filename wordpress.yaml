@@ -1,0 +1,45 @@
+name: wordpress
+services:
+    wordpress_test:
+        cpu_shares: 90
+        command: []
+        container_name: wordpress
+        deploy:
+            resources:
+                limits:
+                    memory: "3763339264"
+        environment:
+            WORDPRESS_DB_HOST: DB_HOST
+            WORDPRESS_DB_NAME: DB_NAME
+            WORDPRESS_DB_PASSWORD: DB_PASSWORD
+            WORDPRESS_DB_USER: DB_USER
+        hostname: wordpress
+        image: wordpress:latest
+        labels:
+            icon: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1DIlYvtaJulsJZag0JnuNVddwTFSonHeeQQ&s
+        network_mode: bridge
+        ports:
+            - target: 80
+              published: "8080"
+              protocol: tcp
+        restart: unless-stopped
+        volumes:
+            - type: bind
+              source: /DATA/AppData/wordpress
+              target: /var/www/html
+networks:
+    default:
+        name: wordpress
+x-casaos:
+    author: self
+    category: self
+    hostname: ""
+    icon: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1DIlYvtaJulsJZag0JnuNVddwTFSonHeeQQ&s
+    index: /
+    is_uncontrolled: false
+    port_map: "8080"
+    scheme: http
+    store_app_id: wordpress
+    title:
+        custom: ""
+        en_us: wordpress

@@ -1,6 +1,6 @@
 name: wordpress
 services:
-    wordpress_test:
+    wordpress:
         cpu_shares: 90
         command: []
         container_name: wordpress
